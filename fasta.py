@@ -14,11 +14,16 @@ file is reached).
 """
 
 class Fasta:
+    # self.data is a dictionary from the sequence id to the sequence
+    # self.description is a dictionary from the sequence id to the description
+    #
     def __init__(self, string):
         self.data = {}
         self.description = {}
         self.parse(string)
         
+    # Break up the fasta file into sequences
+    #
     def parse(self, string):
         # Turn into list
         string = string.replace("\r", "\n")
@@ -34,7 +39,8 @@ class Fasta:
             sequence.append(line)
         self.add_data(sequence)
         
-        
+    # Parse through a sequence
+    #
     def add_data(self, sequence):
         if len(sequence[0]) > 1:
             index = sequence[0].find(' ')
