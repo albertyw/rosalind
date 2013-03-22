@@ -1,15 +1,15 @@
 """
 Yet another FASTA class
 
-Every string in a FASTA file begins with a single-line that contains the symbol 
-'>' along with some labeling information about the string. The word following 
-the '>' symbol is the identifier of the sequence, and the rest of the line is 
-its description (both are optional). There should be no space between the ">" 
+Every string in a FASTA file begins with a single-line that contains the symbol
+'>' along with some labeling information about the string. The word following
+the '>' symbol is the identifier of the sequence, and the rest of the line is
+its description (both are optional). There should be no space between the ">"
 and the first letter of the identifier.
 
-All subsequent lines contain the string itself; it is recommended that all lines 
-of text are shorter than 80 symbols. The string ends when another line starting 
-with '>' appears, indicating the start of another sequence (or if the end of the 
+All subsequent lines contain the string itself; it is recommended that all lines
+of text are shorter than 80 symbols. The string ends when another line starting
+with '>' appears, indicating the start of another sequence (or if the end of the
 file is reached).
 """
 
@@ -21,7 +21,7 @@ class Fasta:
         self.data = {}
         self.description = {}
         self.parse(string)
-        
+
     # Break up the fasta file into sequences
     #
     def parse(self, string):
@@ -29,7 +29,7 @@ class Fasta:
         string = string.replace("\r", "\n")
         lines = string.split("\n")
         lines = [v for v in lines if v != '']
-        
+
         # Split into sequences
         sequence = []
         for line in lines:
@@ -38,7 +38,7 @@ class Fasta:
                 sequence = []
             sequence.append(line)
         self.add_data(sequence)
-        
+
     # Parse through a sequence
     #
     def add_data(self, sequence):
@@ -56,5 +56,5 @@ class Fasta:
         sequence_data = ''.join(sequence[1:])
         self.data[sequence_id] = sequence_data
         self.description[sequence_id] = sequence_description
-        
-        
+
+
