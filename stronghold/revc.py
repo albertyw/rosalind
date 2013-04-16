@@ -11,4 +11,5 @@ def complement(s):
     sc = sc.replace('1', 'T')
     return sc
 
-print complement(s)
+if __name__ == '__main__':
+    print complement(s)
