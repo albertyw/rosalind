@@ -14,10 +14,12 @@ file is reached).
 """
 
 class Fasta:
+    # self.sequences is a list of all the sequences in the order they were given
     # self.data is a dictionary from the sequence id to the sequence
     # self.description is a dictionary from the sequence id to the description
     #
     def __init__(self, string):
+        self.sequences = []
         self.data = {}
         self.description = {}
         self.parse(string)
@@ -56,5 +58,6 @@ class Fasta:
         sequence_data = ''.join(sequence[1:])
         self.data[sequence_id] = sequence_data
         self.description[sequence_id] = sequence_description
+        self.sequences.append(sequence_data)
 
 
