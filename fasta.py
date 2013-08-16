@@ -75,11 +75,14 @@ class Fasta:
 
     def dump_phylip(self, file_location=None):
         required_length = len(self.data.itervalues().next())
+        id_max_length = 0
+        for sequence_id, sequence_data in self.data.items():
+            id_max_length = max(id_max_length, len(sequence_id))
         data = str(len(self.data)) + ' ' + str(required_length)+ "\n"
         for sequence_id, sequence_data in self.data.items():
             if required_length != len(sequence_data):
                 raise Exception('Sequences must have equal lengths')
-            data += sequence_id + ' ' + sequence_data + "\n"
+            data += sequence_id + (' ' * (id_max_length - len(sequence_id))) + ' ' + sequence_data + "\n"
         if file_location:
             handle = open(file_location, 'w')
             handle.write(data)
