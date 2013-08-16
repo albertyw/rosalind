@@ -65,8 +65,8 @@ class Fasta:
         for sequence_id, sequence_data in self.data.items():
             data += '>'+sequence_id+' '+self.description[sequence_id]+"\n"
             while sequence_data != '':
-                data += sequence_data[0:81]+"\n"
-                sequence_data = sequence_data[81:]
+                data += sequence_data[0:80]+"\n"
+                sequence_data = sequence_data[80:]
         if file_location:
             handle = open(file_location, 'w')
             handle.write(data)
