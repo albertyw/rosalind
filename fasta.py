@@ -60,4 +60,17 @@ class Fasta:
         self.description[sequence_id] = sequence_description
         self.sequences.append(sequence_data)
 
+    def dump_fasta(self, file_location=None):
+        data = ''
+        for sequence_id, sequence_data in self.data.items():
+            data += '>'+sequence_id+' '+self.description[sequence_id]+"\n"
+            while sequence_data != '':
+                data += sequence_data[0:81]+"\n"
+                sequence_data = sequence_data[81:]
+        if file_location:
+            handle = open(file_location, 'w')
+            handle.write(data)
+            handle.close()
+        return data
+
 
