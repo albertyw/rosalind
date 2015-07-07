@@ -8,7 +8,7 @@ def read_file():
     return data
 
 def parse_edge_list(data):
-    data = [[int(x) for x in line.split(" ")] for line in data.split("\n")]
+    data = [[int(x) for x in line.split()] for line in data.split("\n")]
     return data
 
 def space_separated(data):
