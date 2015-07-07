@@ -13,3 +13,20 @@ def parse_edge_list(data):
 
 def space_separated(data):
     return " ".join(str(x) for x in data)
+
+def create_undirected_graph(data):
+    graph = defaultdict(list)
+    for line in data[1:]:
+        graph[line[0]].append(line[1])
+        graph[line[1]].append(line[0])
+    return graph
+
+def parse_multiple_graphs(data):
+    graphs = []
+    start = 2
+    index = 2
+    while index < len(data):
+        if data[index] == [] or index == len(data)-1:
+            graphs.append(data[start:index])
+        index += 1
+    return graphs
