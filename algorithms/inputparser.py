@@ -1,5 +1,6 @@
 # Functions for parsing rosalind functions
 
+from collections import defaultdict
 import sys
 
 def read_file():
@@ -14,11 +15,12 @@ def parse_edge_list(data):
 def space_separated(data):
     return " ".join(str(x) for x in data)
 
-def create_undirected_graph(data):
+def create_graph(data, undirected = True):
     graph = defaultdict(list)
     for line in data[1:]:
         graph[line[0]].append(line[1])
-        graph[line[1]].append(line[0])
+        if undirected:
+            graph[line[1]].append(line[0])
     return graph
 
 def parse_multiple_graphs(data):
