@@ -27,8 +27,9 @@ def parse_multiple_graphs(data):
     graphs = []
     start = 2
     index = 2
-    while index < len(data):
-        if data[index] == [] or index == len(data)-1:
+    while index < len(data)+1:
+        if index == len(data) or data[index] == []:
             graphs.append(data[start:index])
+            start = index+1
         index += 1
     return graphs
