@@ -33,3 +33,11 @@ def parse_multiple_graphs(data):
             start = index+1
         index += 1
     return graphs
+
+def create_adjacency_list(graph):
+    node_children = {}
+    for node in range(1, graph[0][0]+1):
+        node_children[node] = []
+    for edge in graph[1:]:
+        node_children[edge[0]].append(edge[1])
+    return node_children

@@ -3,17 +3,9 @@
 
 import inputparser
 
-def create_node_children(graph):
-    node_children = {}
-    for node in range(1, graph[0][0]+1):
-        node_children[node] = []
-    for edge in graph[1:]:
-        node_children[edge[0]].append(edge[1])
-    return node_children
-
 def topological_sort(graph):
     graph_sorted = []
-    graph_unsorted = create_node_children(graph)
+    graph_unsorted = inputparser.create_adjacency_list(graph)
 
     while graph_unsorted:
         acyclic = False
