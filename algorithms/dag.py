@@ -1,12 +1,12 @@
 # Testing Acyclicity
 # http://rosalind.info/problems/dag/
 
-from collections import defaultdict
-
 import inputparser
 
 def create_node_children(graph):
-    node_children = defaultdict(list)
+    node_children = {}
+    for node in range(1, graph[0][0]+1):
+        node_children[node] = []
     for edge in graph[1:]:
         node_children[edge[0]].append(edge[1])
     return node_children
@@ -24,7 +24,7 @@ def topological_sort(graph):
             else:
                 acyclic = True
                 del graph_unsorted[node]
-                graph_sorted.append((node, edges))
+                graph_sorted.append(node)
         if not acyclic:
             raise RuntimeError("cyclic graph")
     return graph_sorted
