@@ -11,7 +11,7 @@ def create_node_children(graph):
         node_children[edge[0]].append(edge[1])
     return node_children
 
-def acyclic(graph):
+def topological_sort(graph):
     graph_sorted = []
     graph_unsorted = create_node_children(graph)
 
@@ -26,12 +26,19 @@ def acyclic(graph):
                 del graph_unsorted[node]
                 graph_sorted.append((node, edges))
         if not acyclic:
-            return -1
-    return 1
+            raise RuntimeError("cyclic graph")
+    return graph_sorted
 
 def dag(data):
     graphs = inputparser.parse_multiple_graphs(data)
-    return [acyclic(graph) for graph in graphs]
+    acyclic = []
+    for graph in graphs:
+        try:
+            topological_sort(graph)
+            acyclic.append(1)
+        except RuntimeError:
+            acyclic.append(-1)
+    return acyclic
 
 if __name__ == '__main__':
     data = inputparser.read_file()
