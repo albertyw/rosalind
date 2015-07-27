@@ -41,3 +41,6 @@ def create_adjacency_list(graph):
     for edge in graph[1:]:
         node_children[edge[0]].append(edge[1])
     return node_children
+
+def create_reverse_graph(graph):
+    return [graph[0]] + [edge[::-1] for edge in graph[1:]]
